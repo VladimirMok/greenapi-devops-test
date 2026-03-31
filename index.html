@@ -8,6 +8,60 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+     <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>GREEN-API</h1>
+
+            </div>
+
+            <!-- Параметры подключения -->
+            <div class="section">
+
+                <div class="input-group">
+                    <input type="text" id="idInstance" placeholder="idInstance" autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <input type="password" id="apiToken" placeholder="ApiTokenInstance" autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <input type="text" id="phoneNumber" placeholder="7XXXXXXXXXX (без +)" autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <textarea id="messageText" rows="2" placeholder="Введите текст сообщения...">Hello World!</textarea>
+                </div>
+                <div class="input-group">
+                    <label for="fileUrl">URL файла (для sendFileByUrl)</label>
+                    <input type="text" id="fileUrl" placeholder="https://example.com/image.jpg" autocomplete="off">
+                </div>
+            </div>
+
+            <!-- Кнопки методов -->
+            <div class="section">
+                <div class="button-group">
+                    <button class="btn btn-primary" id="btnGetSettings">getSettings</button>
+                    <button class="btn btn-primary" id="btnGetState">getStateInstance</button>
+                    <button class="btn btn-success" id="btnSendMessage">sendMessage</button>
+                    <button class="btn btn-success" id="btnSendFile">sendFileByUrl</button>
+                </div>
+            </div>
+
+            <!-- Результат -->
+            <div class="section">
+                <h3>Ответ:</h3>
+                <div class="result-area">
+                    <pre id="resultOutput" readonly>Нажмите на любую кнопку, чтобы выполнить запрос...</pre>
+                </div>
+            </div>
+
+            <!-- Статус -->
+            <div class="status-bar">
+                <span id="statusIndicator" class="status-offline"></span>
+                <span id="statusText">Не подключено</span>
+            </div>
+        </div>
+    </div>
+
   
 </body>
 </html>
