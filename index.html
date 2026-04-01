@@ -14,43 +14,67 @@
                 <h1>GREEN-API</h1>
 
             </div>
+            <!-- Две колонки -->
+            <div class="two-columns">
+                
+                <!-- ЛЕВАЯ КОЛОНКА - Параметры подключения и кнопки -->
+                <div class="left-column">
+                    
+                    <!-- Параметры подключения -->
+                    <div class="section">
+                        <div class="input-group">
+                            <input type="text" id="idInstance" placeholder="idInstance" autocomplete="off">
+                        </div>
+                        <div class="input-group">
+                            <input type="password" id="apiToken" placeholder="ApiTokenInstance" autocomplete="off">
+                        </div>
+                        <!-- Кнопки getSettings и getStateInstance под ApiTokenInstance -->
+                        <div class="button-group">
+                            <button class="btn btn-primary" id="btnGetSettings">getSettings</button>
+                        </div>
+                        <div class="button-group" style="margin-top: 8px;">
+				<button class="btn btn-primary" id="btnGetState">getStateInstance</button>
+                        </div>
+                    </div>
 
-            <!-- Параметры подключения -->
-            <div class="section">
+                    <!-- Номер телефона (отдельный блок) -->
+                    <div class="section">
+                        <div class="input-group">
+                            <input type="text" id="phoneNumber" placeholder="7XXXXXXXXXX (без +)" autocomplete="off">
+                        </div>
+                    </div>
 
-                <div class="input-group">
-                    <input type="text" id="idInstance" placeholder="idInstance" autocomplete="off">
-                </div>
-                <div class="input-group">
-                    <input type="password" id="apiToken" placeholder="ApiTokenInstance" autocomplete="off">
-                </div>
-                <div class="input-group">
-                    <input type="text" id="phoneNumber" placeholder="7XXXXXXXXXX (без +)" autocomplete="off">
-                </div>
-                <div class="input-group">
-                    <textarea id="messageText" rows="2" placeholder="Введите текст сообщения...">Hello World!</textarea>
-                </div>
-                <div class="input-group">
-                    <label for="fileUrl">URL файла (для sendFileByUrl)</label>
-                    <input type="text" id="fileUrl" placeholder="https://example.com/image.jpg" autocomplete="off">
-                </div>
-            </div>
+                    <!-- Отправка текстового сообщения -->
+                    <div class="section">
+                        <div class="input-group">
+                            <textarea id="messageText" rows="3" placeholder="Введите текст сообщения...">Hello World!</textarea>
+                        </div>
+                        <!-- Кнопка sendMessage под текстовым полем -->
+                        <div class="button-group">
+                            <button class="btn btn-success" id="btnSendMessage">sendMessage</button>
+                        </div>
+                    </div>
 
-            <!-- Кнопки методов -->
-            <div class="section">
-                <div class="button-group">
-                    <button class="btn btn-primary" id="btnGetSettings">getSettings</button>
-                    <button class="btn btn-primary" id="btnGetState">getStateInstance</button>
-                    <button class="btn btn-success" id="btnSendMessage">sendMessage</button>
-                    <button class="btn btn-success" id="btnSendFile">sendFileByUrl</button>
+                    <!-- Отправка файла -->
+                    <div class="section">
+                        <div class="input-group">
+                            <input type="text" id="fileUrl" placeholder="https://example.com/image.jpg" autocomplete="off">
+                        </div>
+                        <!-- Кнопка sendFileByUrl под полем URL -->
+                        <div class="button-group">
+                            <button class="btn btn-success" id="btnSendFile">sendFileByUrl</button>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Результат -->
-            <div class="section">
-                <h3>Ответ:</h3>
-                <div class="result-area">
-                    <pre id="resultOutput" readonly>Нажмите на любую кнопку, чтобы выполнить запрос...</pre>
+                <!-- ПРАВАЯ КОЛОНКА - Результат -->
+                <div class="right-column">
+                    <div class="section" style="height: 100%; display: flex; flex-direction: column;">
+                        <h3>Ответ:</h3>
+			<div class="result-area" style="flex: 1;">
+                            <pre id="resultOutput">Нажмите на любую кнопку, чтобы выполнить запрос...</pre>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -60,8 +84,6 @@
                 <span id="statusText">Не подключено</span>
             </div>
         </div>
-    </div>
-
-  
+    </div>  
 </body>
 </html>
