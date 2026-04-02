@@ -5,6 +5,7 @@ const API_BASE = 'https://api.green-api.com';
 const idInstanceInput = document.getElementById('idInstance');
 const apiTokenInput = document.getElementById('apiToken');
 const phoneNumberInput = document.getElementById('phoneNumber');
+const phoneNumberFileInput = document.getElementById('phoneNumberFile');
 const messageTextInput = document.getElementById('messageText');
 const fileUrlInput = document.getElementById('fileUrl');
 const resultOutput = document.getElementById('resultOutput');
@@ -71,7 +72,7 @@ async function callApi(method, params = null) {
 // Обновление результата на странице
 function updateResult(data, success = true) {
     const timestamp = new Date().toLocaleTimeString();
-    const prefix = success ? `✅ [${timestamp}] Успешно:\n` : `❌ [${timestamp}] Ошибка:\n`;
+    const prefix = success ? `[${timestamp}] Успешно:\n` : `❌ [${timestamp}] Ошибка:\n`;
     const output = prefix + JSON.stringify(data, null, 2);
     resultOutput.textContent = output;
 }
@@ -97,6 +98,8 @@ async function getSettings() {
     } catch (error) {
         updateResult({ error: error.message }, false);
         throw error;
+    } finally {
+        setLoading(btnGetSettings, false, btnTexts.settings);  // Восстанавливаем кнопку
     }
 }
 
@@ -109,7 +112,7 @@ async function getStateInstance() {
         
         // Обновляем статус на основе ответа
         if (result.stateInstance === 'authorized') {
-            updateStatus(true, 'Инстанс авторизован (WhatsApp подключен)');
+            updateStatus(true, 'Инстанс авторизован (Telegram подключен)');
         } else if (result.stateInstance === 'notAuthorized') {
             updateStatus(false, 'Не авторизован. Просканируйте QR-код в личном кабинете GREEN-API');
         } else if (result.stateInstance === 'blocked') {
@@ -123,6 +126,8 @@ async function getStateInstance() {
         updateResult({ error: error.message }, false);
         updateStatus(false, 'Ошибка подключения к API');
         throw error;
+    } finally {
+        setLoading(btnGetState, false, btnTexts.state);  
     }
 }
 
@@ -159,7 +164,7 @@ async function sendMessage() {
         
         if (result.idMessage) {
             // Дополнительно показываем успех
-            resultOutput.textContent = `✅ [${new Date().toLocaleTimeString()}] Сообщение отправлено!\n` + JSON.stringify(result, null, 2);
+            resultOutput.textContent = `[${new Date().toLocaleTimeString()}] Сообщение отправлено!\n` + JSON.stringify(result, null, 2);
         }
         
         return result;
@@ -171,7 +176,7 @@ async function sendMessage() {
 
 // sendFileByUrl
 async function sendFileByUrl() {
-    const phoneNumber = phoneNumberInput.value.trim();
+    const phoneNumber = phoneNumberFileInput.value.trim();
     const fileUrl = fileUrlInput.value.trim();
 
     if (!phoneNumber) {
@@ -235,9 +240,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Проверяем, есть ли сохраненные данные в localStorage
     const savedId = localStorage.getItem('greenapi_idInstance');
     const savedToken = localStorage.getItem('greenapi_apiToken');
-    
+    const savedPhone = localStorage.getItem('greenapi_phoneNumber');
+    const savedPhoneFile = localStorage.getItem('greenapi_phoneNumberFile');
+
     if (savedId) idInstanceInput.value = savedId;
     if (savedToken) apiTokenInput.value = savedToken;
+    if (savedPhone) phoneNumberInput.value = savedPhone;
+    if (savedPhoneFile) phoneNumberFileInput.value = savedPhoneFile;	
     
     // Сохраняем при изменении
     idInstanceInput.addEventListener('change', () => {
@@ -246,4 +255,10 @@ document.addEventListener('DOMContentLoaded', () => {
     apiTokenInput.addEventListener('change', () => {
         localStorage.setItem('greenapi_apiToken', apiTokenInput.value);
     });
+    phoneNumberInput.addEventListener('change', () => {
+        localStorage.setItem('greenapi_phoneNumber', phoneNumberInput.value);
+    });
+    phoneNumberFileInput.addEventListener('change', () => {
+        localStorage.setItem('greenapi_phoneNumberFile', phoneNumberFileInput.value);
+    });	
 });
