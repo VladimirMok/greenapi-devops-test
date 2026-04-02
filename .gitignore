@@ -22,3 +22,21 @@ npm-debug.log*
 # Temporary files
 tmp/
 temp/
+
+# Vim swap files
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+
+# Backup files
+*~
+
+# Session files
+Session.vim
+
+# Temporary files
+.netrwhist
+
+# Tags
+tags
