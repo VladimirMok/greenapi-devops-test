@@ -5,7 +5,7 @@
 }
 body {
     font-family: inherit;
-    background: greenyellow;
+    background: none;
     min-height: 100vh;
     padding: 20px;
 }
@@ -76,7 +76,7 @@ body {
     font-weight: 600;
 }
 .input-group {
-    border: 1px solid; 
+
     color: #3b9702;
     padding: 10px 15px;
     border-radius: 5px;
@@ -121,6 +121,7 @@ body {
 .btn {
     padding: 10px 20px;
     border: none;
+     width: 160px;  
     border-radius: 8px;
     font-size: 14px;
     font-weight: 600;
@@ -128,7 +129,6 @@ body {
     transition: all 0.3s;
     color: white;
     position: relative;
-    overflow: hidden;
 }
 
 .btn:disabled {
